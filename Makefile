@@ -8,14 +8,7 @@ MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
 
 SRCDIR	= src/
-SRC = $(SRCDIR)/calc_set.c \
-      $(SRCDIR)/color.c \
-      $(SRCDIR)/event.c \
-      $(SRCDIR)/init.c \
-      $(SRCDIR)/main.c \
-      $(SRCDIR)/math_utils.c \
-      $(SRCDIR)/render.c \
-      $(SRCDIR)/str_utils.c
+SRC = $(wildcard $(SRCDIR)/*.c)
 
 OBJDIR = obj
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
