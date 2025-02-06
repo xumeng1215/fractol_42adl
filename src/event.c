@@ -6,37 +6,33 @@
 /*   By: mexu <mexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:31:32 by mexu / Char       #+#    #+#             */
-/*   Updated: 2025/02/06 14:23:35 by mexu             ###   ########.fr       */
+/*   Updated: 2025/02/06 14:35:17 by mexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fractol.h"
 
 // exit program when press ESC or the x button
-
-
 #ifdef __APPLE__
-    // Exit function for macOS
-    int ft_exit(t_fractol *f)
-    {
-        mlx_destroy_image(f->mlx_ptr, f->img.img_ptr);
-        mlx_destroy_window(f->mlx_ptr, f->win_ptr);
-        exit(EXIT_SUCCESS);
-    }
+// Exit function for macOS
+int	ft_exit(t_fractol *f)
+{
+	mlx_destroy_image(f->mlx_ptr, f->img.img_ptr);
+	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
+	exit(EXIT_SUCCESS);
+}
 
 #else
-    // Exit function for Linux
-    int ft_exit(t_fractol *f)
-    {
-        mlx_destroy_image(f->mlx_ptr, f->img.img_ptr);
-        mlx_destroy_window(f->mlx_ptr, f->win_ptr);
-        mlx_destroy_display(f->mlx_ptr); // Specific to Linux
-        free(f->mlx_ptr); // Freeing the mlx_ptr to prevent memory leaks
-        exit(EXIT_SUCCESS);
-    }
+// Exit function for Linux
+int	ft_exit(t_fractol *f)
+{
+	mlx_destroy_image(f->mlx_ptr, f->img.img_ptr);
+	mlx_destroy_window(f->mlx_ptr, f->win_ptr);
+	mlx_destroy_display(f->mlx_ptr);
+	free(f->mlx_ptr);
+	exit(EXIT_SUCCESS);
+}
 #endif
-
-
 
 // press ESC will exit the program
 // press arrow keys or wsad to move the fractal

@@ -46,4 +46,7 @@ re: fclean all
 
 bonus: all
 
+norm:
+	norminette *.h src/
+
 .PHONY: all re clean fclean

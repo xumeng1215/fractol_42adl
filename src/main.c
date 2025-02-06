@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mexu / Charlie <charlie_xumeng@hotmail.    +#+  +:+       +#+        */
+/*   By: mexu <mexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:38:59 by mexu / Char       #+#    #+#             */
-/*   Updated: 2024/07/08 16:10:46 by mexu / Char      ###   ########.fr       */
+/*   Updated: 2025/02/06 14:33:43 by mexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	show_tips(void)
 	ft_putstr_fd("./fractol mandelbrot\n", STDOUT_FILENO);
 	ft_putstr_fd("./fractol tricorn\n", STDOUT_FILENO);
 	ft_putstr_fd("WSAD and arrow keys to move the fractal.\n", STDOUT_FILENO);
-	ft_putstr_fd("page up and down to adjust the iteration limits.\n", STDOUT_FILENO);
+	ft_putstr_fd("page up and down to adjust the iteration limits.\n",
+		STDOUT_FILENO);
 	ft_putstr_fd("space to change color, and r to reset.\n", STDOUT_FILENO);
 }
 

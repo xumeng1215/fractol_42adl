@@ -6,7 +6,7 @@
 /*   By: mexu <mexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:34:37 by mexu / Char       #+#    #+#             */
-/*   Updated: 2025/02/06 14:22:17 by mexu             ###   ########.fr       */
+/*   Updated: 2025/02/06 14:39:54 by mexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,82 +19,39 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-// //include mlx for linux
-// # include "minilibx-linux/mlx.h"
-// # include <X11/keysym.h>
-// # include <X11/X.h>
+# ifdef __APPLE__
+#  include "minilibx_mac/mlx.h"
 
+enum {
+	XK_w = 13,
+	XK_a = 0,
+	XK_s = 1,
+	XK_d = 2,
+	XK_Up = 126,
+	XK_Down = 125,
+	XK_Left = 123,
+	XK_Right = 124,
+	XK_space = 49,
+	XK_Page_Up = 116,
+	XK_Page_Down = 121,
+	XK_r = 15,
+	XK_Escape = 53,
+	Button1 = 1,
+	Button4 = 4,
+	Button5 = 5,
+	KeyPress = 2,
+	KeyPressMask = (1L << 0),
+	ButtonPress = 4,
+	ButtonPressMask = (1L << 2),
+	DestroyNotify = 17,
+	StructureNotifyMask = (1L << 17)
+};
 
-// include mlx for macos
-// # include "minilibx_mac/mlx.h"
-// enum
-// {
-// 	XK_w				= 13,	// W key
-// 	XK_a				= 0,	// A key
-// 	XK_s				= 1,	// S key
-// 	XK_d				= 2,	// D key
-// 	XK_Up				= 126,	// Up arrow key
-// 	XK_Down				= 125,	// Down arrow key
-// 	XK_Left				= 123,	// Left arrow key
-// 	XK_Right			= 124,	// Right arrow key
-// 	XK_space			= 49,	// Space key
-// 	XK_Page_Up			= 116,	// Page Up key
-// 	XK_Page_Down		= 121,	// Page Down key
-// 	XK_r				= 15,	// R key
-// 	XK_Escape			= 53,	// ESC key
-// 	Button1				= 1,	// Left mouse button
-// 	Button4				= 4,	// Scroll wheel up
-// 	Button5				= 5,	// Scroll wheel down
-// 	KeyPress			= 2,
-// 	KeyPressMask		= (1L<<0),
-// 	ButtonPress			= 4,
-// 	ButtonPressMask		= (1L<<2),
-// 	DestroyNotify		= 17,
-// 	StructureNotifyMask	= (1L<<17)
-// };
-
-#ifdef __APPLE__
-    // MacOS includes
-    # include "minilibx_mac/mlx.h"
-    // # include <X11/keysym.h>
-    // # include <X11/X.h>
-    
-    // MacOS keycodes (if needed for your program)
-    enum {
-        XK_w = 13,    // W key
-        XK_a = 0,     // A key
-        XK_s = 1,     // S key
-        XK_d = 2,     // D key
-        XK_Up = 126,  // Up arrow key
-        XK_Down = 125,// Down arrow key
-        XK_Left = 123,// Left arrow key
-        XK_Right = 124,// Right arrow key
-        XK_space = 49,// Space key
-        XK_Page_Up = 116,// Page Up key
-        XK_Page_Down = 121,// Page Down key
-        XK_r = 15,    // R key
-        XK_Escape = 53,// ESC key
-        Button1 = 1,  // Left mouse button
-        Button4 = 4,  // Scroll wheel up
-        Button5 = 5,  // Scroll wheel down
-        KeyPress = 2,
-        KeyPressMask = (1L << 0),
-        ButtonPress = 4,
-        ButtonPressMask = (1L << 2),
-        DestroyNotify = 17,
-        StructureNotifyMask = (1L << 17)
-    };
-
-#else
-    // Linux includes
-    # include "minilibx-linux/mlx.h"
-    # include <X11/keysym.h>
-    # include <X11/X.h>
-
-    // No need to redefine keys for Linux as they're already defined in X11/keysym.h
-#endif
-
-
+# else
+#  include "minilibx-linux/mlx.h"
+#  include <X11/keysym.h>
+#  include <X11/X.h>
+# endif
 
 // window size define
 # define WIDTH 600
