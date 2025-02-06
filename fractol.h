@@ -6,7 +6,7 @@
 /*   By: mexu <mexu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:34:37 by mexu / Char       #+#    #+#             */
-/*   Updated: 2025/02/06 14:39:54 by mexu             ###   ########.fr       */
+/*   Updated: 2025/02/06 15:11:43 by mexu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 
 # ifdef __APPLE__
 #  include "minilibx_mac/mlx.h"
+
+# else
+#  include "minilibx-linux/mlx.h"
+#  include <X11/keysym.h>
+#  include <X11/X.h>
+# endif
+
+# ifdef __APPLE__
 
 enum {
 	XK_w = 13,
@@ -46,11 +54,6 @@ enum {
 	DestroyNotify = 17,
 	StructureNotifyMask = (1L << 17)
 };
-
-# else
-#  include "minilibx-linux/mlx.h"
-#  include <X11/keysym.h>
-#  include <X11/X.h>
 # endif
 
 // window size define
