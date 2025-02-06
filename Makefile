@@ -2,24 +2,35 @@ NAME = fractol
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-# MLX_PATH	= minilibx-linux/
-MLX_PATH	= minilibx_mac/
-MLX_NAME	= libmlx.a
-MLX			= $(MLX_PATH)$(MLX_NAME)
+# Conditional for OS detection
+UNAME_S := $(shell uname -s)
 
-SRCDIR	= src/
+ifeq ($(UNAME_S),Linux)
+	MLX_PATH = minilibx-linux/
+	MLX_NAME = libmlx.a
+	LINK_FLAGS = -lXext -lX11
+	INCLUDES = -I $(SRCDIR) -I $(MLX_PATH)
+else ifeq ($(UNAME_S),Darwin)
+	MLX_PATH = minilibx_mac/
+	MLX_NAME = libmlx.a
+	LINK_FLAGS = -framework OpenGL -framework AppKit
+	INCLUDES = -I $(SRCDIR) -I $(MLX_PATH)
+else
+$(error Unsupported OS: $(UNAME_S))
+endif
+
+MLX = $(MLX_PATH)$(MLX_NAME)
+
+SRCDIR = src/
 SRC = $(wildcard $(SRCDIR)/*.c)
 
 OBJDIR = obj
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-INCLUDES = -I $(SRCDIR) -I $(MLX_PATH)
-
-all: $(NAME) 
+all: $(NAME)
 
 $(NAME): $(OBJ) $(MLX)
-	# $(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX) -lXext -lX11 $(INCLUDES)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX) -framework OpenGL -framework AppKit $(INCLUDES)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(MLX) $(LINK_FLAGS) $(INCLUDES)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(OBJDIR)
